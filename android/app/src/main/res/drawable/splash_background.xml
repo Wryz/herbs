@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Cream background matching TCM theme -->
+    <item android:drawable="@color/splash_background"/>
+    <!-- Centered splash image -->
+    <item
+        android:drawable="@drawable/splash_herbs"
+        android:gravity="center"/>
+</layer-list>
