@@ -41,7 +41,7 @@ interface HerbDetailSheetProps {
 
 export function HerbDetailSheet({herb, onClose}: HerbDetailSheetProps) {
   const bottomSheetRef = useRef<BottomSheet>(null);
-  const snapPoints = useMemo(() => ['100%'], []);
+  const snapPoints = useMemo(() => ['90%', '100%'], []);
 
   useEffect(() => {
     if (herb) {
