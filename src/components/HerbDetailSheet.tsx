@@ -11,16 +11,11 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import herbImages from '../data/herbImages';
 import {Colors} from '../theme/colors';
 import {Herb} from '../types/herb';
 
-const IMAGE_BASE_URL = 'https://www.meandqi.com';
 const HERB_DETAIL_URL = 'https://www.meandqi.com/knowledge-base/herbs';
-
-function getImageUri(src: string | null | undefined): string {
-  if (!src) return '';
-  return `${IMAGE_BASE_URL}${src.replace(/&amp;/g, '&')}`;
-}
 
 function getHerbDetailUrl(slug: string): string {
   return `${HERB_DETAIL_URL}/${slug}/`;
@@ -93,12 +88,12 @@ export function HerbDetailSheet({herb, onClose}: HerbDetailSheetProps) {
         {herb && (
           <>
             <View style={styles.imageWrapper}>
-              {herb.image?.src ? (
+              {herbImages[herb.slug] ? (
                 <Image
-                  source={{uri: getImageUri(herb.image.src)}}
+                  source={herbImages[herb.slug]}
                   style={styles.image}
                   resizeMode="cover"
-                  accessibilityLabel={herb.image.alt}
+                  accessibilityLabel={herb.image?.alt}
                 />
               ) : (
                 <View style={[styles.image, styles.imagePlaceholder]}>

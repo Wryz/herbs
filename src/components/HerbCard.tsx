@@ -1,14 +1,8 @@
 import React, {memo} from 'react';
 import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
+import herbImages from '../data/herbImages';
 import {Colors} from '../theme/colors';
 import {Herb} from '../types/herb';
-
-const IMAGE_BASE_URL = 'https://www.meandqi.com';
-
-function getImageUri(src: string | null | undefined): string {
-  if (!src) return '';
-  return `${IMAGE_BASE_URL}${src.replace(/&amp;/g, '&')}`;
-}
 
 const TEMP_COLORS: Record<string, string> = {
   Hot: Colors.temperatureHot,
@@ -26,13 +20,13 @@ interface HerbCardProps {
 function HerbCardComponent({herb, onPress}: HerbCardProps) {
   const tempColor = TEMP_COLORS[herb.temperature] || Colors.textSecondary;
 
-  const imageUri = herb.image?.src ? getImageUri(herb.image.src) : null;
+  const localImage = herbImages[herb.slug];
 
   const content = (
     <>
-      {imageUri ? (
+      {localImage ? (
         <Image
-          source={{uri: imageUri}}
+          source={localImage}
           style={styles.image}
           resizeMode="cover"
           accessibilityLabel={herb.image?.alt}
